@@ -9,5 +9,5 @@
 
 
 # 调试
-sed -i 's|src-git-full openstick https://github.com/lkiuyu/openstick-feeds.git|src-git-full openstick https://github.com/xuxin1955/openstick-feeds|g' feeds.conf.default
+echo 'src-git-full openstick https://github.com/xuxin1955/openstick-feeds.git' >> feeds.conf.default
 
