@@ -114,10 +114,16 @@ jobs:
         
     - name: feeds DIY_P7_SH
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P7_SH
+        if [ -f "$FEEDS_CONF" ]; then
+          mv "$FEEDS_CONF" openwrt/feeds.conf.default
+        else
+          echo "No custom feeds.conf.default, use default."
+        fi
+
+        chmod +x "$DIY_P7_SH"
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P7_SH
+        "$GITHUB_WORKSPACE/$DIY_P7_SH"
+
 
     - name: Update & Install feeds
       working-directory: ./openwrt
