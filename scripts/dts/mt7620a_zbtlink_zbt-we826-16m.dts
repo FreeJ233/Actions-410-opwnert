@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
 #include "mt7620a.dtsi"
 
 #include <dt-bindings/gpio/gpio.h>
@@ -5,7 +7,8 @@
 #include <dt-bindings/leds/common.h>
 
 / {
-	compatible = "zbtlink,zbt-we826", "ralink,mt7620a-soc";
+	compatible = "zbtlink,zbt-we826-16m", "zbtlink,zbt-we826", "ralink,mt7620a-soc";
+	model = "Zbtlink ZBT-WE826 (16M)";
 
 	aliases {
 		led-boot = &led_power;
@@ -100,6 +103,7 @@
 			firmware: partition@50000 {
 				compatible = "denx,uimage";
 				label = "firmware";
+				reg = <0x50000 0xfb0000>;
 			};
 		};
 	};
