@@ -182,50 +182,33 @@ jobs:
       run: |
         cd openwrt
         
-        if [ -f .config ]; then
-          grep "^CONFIG_PACKAGE_" .config | grep "=y" | sed 's/CONFIG_PACKAGE_//;s/=y//' | sort > user_selected.txt
-        else
-          touch user_selected.txt
-        fi
+        grep "^CONFIG_PACKAGE_" .config | grep "=y" | sed 's/CONFIG_PACKAGE_//;s/=y//' | sort > user_selected.txt
         
         make defconfig
         
-        echo "::group::🔍 深度追踪报告：是谁勾选了冲突包？"
+        grep "^CONFIG_PACKAGE_" .config | grep "=y" | sed 's/CONFIG_PACKAGE_//;s/=y//' | sort > full_list.txt
         
-        TARGETS="kmod-iptables kmod-ipt-core kmod-nf-ipt xtables-legacy"
+        comm -13 user_selected.txt full_list.txt > auto_selected.txt
         
-        for target in $TARGETS; do
-          echo "--------------------------------------------------"
-          echo "🎯 目标包: $target"
+        echo "::group::📊 全量依赖追溯报告"
+        echo "======================================================================================"
+        printf "%-40s | %s\n" "[自动新增的依赖包]" "[可能的来源]"
+        echo "--------------------------------------------------------------------------------------"
+        
+        while read -r pkg; do
+          SOURCES=$(grep -B 30 -E "select PACKAGE_$pkg|depends on PACKAGE_$pkg" tmp/.config-package.in 2>/dev/null | grep "config PACKAGE_" | sed 's/.*PACKAGE_//' | sort -u | tr '\n' ' ')
           
-          awk -v target="$target" '
-            /^config PACKAGE_/ { pkg=$0; sub(/.*PACKAGE_/, "", pkg); in_block=1 }
-            in_block && /select PACKAGE_'"$target"'/ { print pkg }
-            in_block && /^config PACKAGE_/ && !/select PACKAGE_'"$target"'/ { in_block=0 }
-          ' tmp/.config-package.in | sort -u > parents.txt
-          
-          while read -r p; do
-            if grep -x -q "$p" user_selected.txt; then
-              echo "🚨 [直接元凶]: $p"
-            else
-              awk -v p="$p" '
-                /^config PACKAGE_/ { pkg=$0; sub(/.*PACKAGE_/, "", pkg); in_block=1 }
-                in_block && /select PACKAGE_'"$p"'/ { print pkg }
-                in_block && /^config PACKAGE_/ && !/select PACKAGE_'"$p"'/ { in_block=0 }
-              ' tmp/.config-package.in | sort -u > gparents.txt
-              
-              while read -r gp; do
-                if grep -x -q "$gp" user_selected.txt; then
-                  echo "⚠️ [间接元凶]: $gp -> (选择了) -> $p"
-                fi
-              done < gparents.txt
-            fi
-          done < parents.txt
-        done
+          if [ -n "$SOURCES" ]; then
+            printf "➕ %-38s <--- %s\n" "$pkg" "$SOURCES"
+          else
+            printf "➕ %-38s <--- [系统底层/内核]\n" "$pkg"
+          fi
+        done < auto_selected.txt
         
-        echo "--------------------------------------------------"
-        echo "💡 提示: 重点检查上面标记为 [元凶] 的软件，它们是导致冲突的源头。"
+        echo "======================================================================================"
+        echo "自动选中包总数: $(wc -l < auto_selected.txt)"
         echo "::endgroup::"
+
 
 
 
