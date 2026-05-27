@@ -15,7 +15,7 @@
 	pinctrl {
 		state_default: pinctrl0 {
 			gpio {
-				ralink,group = "wled", "jtag";
+				ralink,group = "wled", "jtag", "pcie";
 				ralink,function = "gpio";
 			};
 		};
@@ -67,7 +67,7 @@
 	flash0: flash@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <10000000>;
+		spi-max-frequency = <40000000>;
 		broken-flash-reset;
 		m25p,fast-read;
 
