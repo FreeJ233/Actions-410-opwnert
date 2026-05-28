@@ -44,7 +44,7 @@ jobs:
         ./scripts/show_hardware_info.sh
 
     - name: Free Disk Space (Ubuntu)
-      uses: insightsengineering/disk-space-reclaimer@v1
+      uses: insightsengineering/disk-space-reclaimer@v1.1.2
       with:
         android: false
         dotnet: false
