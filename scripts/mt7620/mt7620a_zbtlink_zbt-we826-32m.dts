@@ -2,7 +2,6 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
-#include <dt-bindings/leds/common.h>
 
 / {
 	compatible = "zbtlink,zbt-we826-32m", "ralink,mt7620a-soc";
@@ -29,19 +28,6 @@
 			gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
 			linux,default-trigger = "phy0tx";
 		};
-
-		air_5G {
-			label = "green:wifi5g";
-			gpios = <&gpio2 2 GPIO_ACTIVE_LOW>;
-			linux,default-trigger = "phy1tx";
-		};
-
-		usb {
-			label = "green:usb";
-			gpios = <&gpio2 3 GPIO_ACTIVE_LOW>;
-			linux,default-trigger = "usbport";
-			trigger-sources = <&ohci_port1>, <&ehci_port1>;
-		};
 	};
 
 	keys {
@@ -59,7 +45,7 @@
 &spi0 {
 	status = "okay";
 
-	flash0: flash@0 {
+	flash@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
 		spi-max-frequency = <40000000>;
@@ -83,7 +69,7 @@
 				read-only;
 			};
 
-			partition@40000 {
+			factory: partition@40000 {
 				label = "factory";
 				reg = <0x40000 0x10000>;
 				read-only;

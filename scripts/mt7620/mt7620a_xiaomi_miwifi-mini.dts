@@ -2,7 +2,6 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
-#include <dt-bindings/leds/common.h>
 
 / {
 	compatible = "xiaomi,miwifi-mini", "ralink,mt7620a-soc";
@@ -28,19 +27,6 @@
 			label = "green:wifi";
 			gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
 			linux,default-trigger = "phy0tx";
-		};
-
-		air_5G {
-			label = "green:wifi5g";
-			gpios = <&gpio2 2 GPIO_ACTIVE_LOW>;
-			linux,default-trigger = "phy1tx";
-		};
-
-		usb {
-			label = "green:usb";
-			gpios = <&gpio2 3 GPIO_ACTIVE_LOW>;
-			linux,default-trigger = "usbport";
-			trigger-sources = <&ohci_port1>, <&ehci_port1>;
 		};
 	};
 

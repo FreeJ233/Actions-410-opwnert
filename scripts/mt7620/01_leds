@@ -57,8 +57,6 @@ dlink,dir-810l|\
 trendnet,tew-810dr)
 	ucidef_set_led_switch "wan" "wan" "green:wan" "switch0" "0x10"
 	;;
-zbtlink,zbt-we826-16m|\
-zbtlink,zbt-we826-32m|\
 zbtlink,zbt-wr8305rt|\
 head-weblink,hdrm200|\
 ohyeah,oy-0001|\
@@ -264,9 +262,6 @@ wavlink,wl-wn535k1)
 wavlink,wl-wn579x3)
 	ucidef_set_led_switch "lan" "lan" "blue:lan" "switch0" "0x20"
 	ucidef_set_led_switch "wan" "wan" "blue:wan" "switch0" "0x10"
-	;;
-xiaomi,miwifi-mini)
-	ucidef_set_led_wlan "wifi_led" "wifi" "green:wifi" "phy0tx"
 	;;
 zbtlink,zbt-ape522ii)
 	ucidef_set_led_netdev "wlan2g4" "wlan1-link" "green:wlan2g4" "wlan1"
