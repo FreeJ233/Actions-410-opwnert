@@ -1,4 +1,4 @@
-name: Build_imm_HLK_7628N
+name: Build_imm_docker
 
 on:
   repository_dispatch:
