@@ -62,9 +62,9 @@ jobs:
         sudo -E apt-get -y install --no-install-recommends $(curl -fsSL https://raw.githubusercontent.com/xuxin1955/depend_ubuntu2204_openwrt/refs/heads/main/depend_ubuntu2204_openwrt)
         echo "status=success" >> ${GITHUB_OUTPUT}
     
-   - name: Initialization dockeer
-     run: |
-       docker run --rm -v ${{ github.workspace }}:/workspace ubuntu:18.04 bash -c "set -e && apt-get update && apt-get install -y curl && curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh | bash"
+    - name: Initialization dockeer
+      run: |
+        docker run --rm -v ${{ github.workspace }}:/workspace ubuntu:18.04 bash -c "set -e && apt-get update && apt-get install -y curl && curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh | bash"
 
         
     - name: mkbootimg build
