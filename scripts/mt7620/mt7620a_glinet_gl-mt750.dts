@@ -11,6 +11,15 @@
 		bootargs = "console=ttyS0,115200";
 	};
 
+	pinctrl {
+		state_default: pinctrl0 {
+			gpio {
+				ralink,group = "wled", "jtag", "i2c";
+				ralink,function = "gpio";
+			};
+		};
+	};
+	
 	leds {
 		compatible = "gpio-leds";
 
@@ -110,6 +119,10 @@
 };
 
 &ehci {
+	status = "okay";
+};
+
+&ohci {
 	status = "okay";
 };
 
