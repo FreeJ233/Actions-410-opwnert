@@ -1,4 +1,4 @@
-name: Build_imm24.10_glinet_gl-mt750
+name: Build_imm24_glinet_gl-mt750
 
 on:
   repository_dispatch:
