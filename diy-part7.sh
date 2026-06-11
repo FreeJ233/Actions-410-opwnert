@@ -10,3 +10,7 @@ cp -f "$GITHUB_WORKSPACE/scripts/dts/mt7620a_glinet_gl-mt750.dts" "target/linux/
 
 mkdir -p "target/linux/ramips/mt7620/base-files/etc/board.d/"
 cp -f "$GITHUB_WORKSPACE/scripts/dts/01_leds" "target/linux/ramips/mt7620/base-files/etc/board.d/01_leds"
+
+
+#2. Clear the login password
+sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/files/zzz-default-settings
