@@ -17,7 +17,7 @@ on:
 
 env:
   CONFIG_FILE: 'config/hlk7621_lede.config'
-  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  REPO_URL: https://github.com/xuxin1955/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   DIY_P8_SH: diy-part8.sh
