@@ -62,7 +62,7 @@ jobs:
       run: |
        echo "source_select = ${{ github.event.inputs.source_select }}"
        echo "REPO_URL=https://github.com/bingoguo93/immortalwrt" >> $GITHUB_ENV
-       if [[ "${{ github.event.inputs.source_select }}" == "openwrt-25.12" ]]; then
+       if [[ "${{ github.event.inputs.source_select }}" == "6.18" ]]; then
          echo "REPO_BRANCH=6.18" >> $GITHUB_ENV
         else
          echo "REPO_BRANCH=master" >> $GITHUB_ENV
