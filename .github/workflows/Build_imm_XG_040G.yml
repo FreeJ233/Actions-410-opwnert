@@ -14,14 +14,6 @@ on:
         required: false
         default: false
         type: boolean
-      source_select:
-        description: ' ↓ 支持两种分支 手动选择要编译的分支 ↓ '
-        required: false
-        default: '6.18'
-        type: choice
-        options:
-        - 6.18
-        - master
        
 env:
   FEEDS_CONF: feeds.conf.default
@@ -60,14 +52,9 @@ jobs:
     
     - name: set_branch_env
       run: |
-       echo "source_select = ${{ github.event.inputs.source_select }}"
-       echo "REPO_URL=https://github.com/bingoguo93/immortalwrt" >> $GITHUB_ENV
-       if [[ "${{ github.event.inputs.source_select }}" == "6.18" ]]; then
-         echo "REPO_BRANCH=6.18" >> $GITHUB_ENV
-        else
-         echo "REPO_BRANCH=master" >> $GITHUB_ENV
-       fi
-       echo "CONFIG_FILE=config/040.config" >> $GITHUB_ENV
+        echo "REPO_URL=https://github.com/bingoguo93/immortalwrt" >> $GITHUB_ENV
+        echo "REPO_BRANCH=6.18" >> $GITHUB_ENV
+        echo "CONFIG_FILE=config/040.config" >> $GITHUB_ENV
 
     - name: Initialization environment
       id: init
