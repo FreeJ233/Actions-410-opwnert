@@ -20,3 +20,7 @@ fi
 
 
 
+# 验证
+echo "=== 验证 airoha-npu ==="
+ls -l package/luci-app-airoha-npu
+ls -l package/luci-app-airoha-npu/Makefile
