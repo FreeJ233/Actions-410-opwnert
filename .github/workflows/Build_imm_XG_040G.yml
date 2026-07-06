@@ -104,6 +104,10 @@ jobs:
         else
         echo "::set-output name=status::success"
         fi
+        
+    - name: Clone airoha-npu
+      run: |
+        git clone https://github.com/rchen14b/luci-app-airoha-npu.git openwrt/package/luci-app-airoha-npu
 
        
     - name: Free up disk space
