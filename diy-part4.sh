@@ -15,9 +15,8 @@ git clone --depth 1 https://github.com/vernesong/OpenClash.git OpenClash
 
 # luci-app-airoha-npu
 if [ ! -d "package/luci-app-airoha-npu" ]; then
-    git clone https://github.com/rchen14b/luci-app-airoha-npu package/luci-app-airoha-npu
+    git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
 fi
-
 
 
 
