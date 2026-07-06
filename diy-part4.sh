@@ -19,7 +19,7 @@ if [ ! -d "package/luci-app-airoha-npu" ]; then
 fi
 
 
-echo "src-git airoha-npu https://github.com/rchen14b/luci-app-airoha-npu" >> feeds.conf.default
+sed -i '/airoha-npu/d; $a src-git airoha-npu https://github.com/rchen14b/luci-app-airoha-npu' feeds.conf.default
 
 # 验证
 echo "=== 验证 airoha-npu ==="
