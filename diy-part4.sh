@@ -18,9 +18,6 @@ if [ ! -d "package/luci-app-airoha-npu" ]; then
     git clone https://github.com/rchen14b/luci-app-airoha-npu.git package/luci-app-airoha-npu
 fi
 
-
-sed -i '/airoha-npu/d; $a src-git airoha-npu https://github.com/rchen14b/luci-app-airoha-npu' feeds.conf.default
-
 # 验证
 echo "=== 验证 airoha-npu ==="
 ls -l package/luci-app-airoha-npu
