@@ -10,8 +10,11 @@ cp -f "$GITHUB_WORKSPACE/scripts/dts/msm8916.dtsi" "target/linux/msm89xx/dts/msm
 # turboacc
 # curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
+# 添加第三方 feed 源（small-package 包含 openclash/passwall/ssr-plus 等常用插件）
+echo 'src-git smpackage https://github.com/kenzok8/small-package' >> feeds.conf.default
+
 # 调试
-sed -i 's|src-git-full openstick https://github.com/lkiuyu/openstick-feeds.git|src-git-full openstick https://github.com/xuxin1955/openstick-feeds|g' feeds.conf.default
+# sed -i 's|src-git-full openstick https://github.com/lkiuyu/openstick-feeds.git|src-git-full openstick https://github.com/xuxin1955/openstick-feeds|g' feeds.conf.default
 
 # test
 # cat > feeds.conf.default << 'EOF'
